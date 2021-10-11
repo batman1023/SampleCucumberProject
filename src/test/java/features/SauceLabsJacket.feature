@@ -8,9 +8,9 @@ Feature: SauceLab Backpack
     When I click on login button
     Then I am taken to SauceLabs Home Page
 
-  Scenario: Selecting SauceLab Backpack
+  Scenario: Selecting SauceLab Jacket
     Given I am on SauceLabs HomePage
-    And BackPage is available on HomePage
-    When I click on SauceLabs BackPack
-    Then I am taken to Sauce Labs Backpack page
+    And Jacket is available on HomePage
+    When I click on SauceLabs Jacket
+    Then I am taken to Sauce Labs Jacket page
     And I close the browser

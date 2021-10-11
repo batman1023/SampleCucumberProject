@@ -13,10 +13,15 @@ import java.io.IOException;
 @CucumberOptions(
         features = "src/test/java/features",
         glue="stepDefinition",
-        stepNotifications = true
+        stepNotifications = true,
+        dryRun = false,
+        monochrome = true,
+        plugin = {"pretty","html:target/reportHTML"}
 )
 
 public class TestRunner {
+
+
 
     }
 
