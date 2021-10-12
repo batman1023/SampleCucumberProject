@@ -11,6 +11,10 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.URL;
 
 
 @RunWith(Cucumber.class)
@@ -25,8 +29,27 @@ public class stepDefinition {
     @Given("^I am on SauceLabs login page$")
     public void i_am_on_saucelabs_login_page() throws Throwable {
             System.out.println("I am ON LOGIN PAGE");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Owner\\Documents\\chromedriver\\chromedriver.exe");
-        driver = new ChromeDriver();
+        String host = "localhost";
+        DesiredCapabilities dc;
+
+        if (System.getProperty("BROWSER") != null &&
+                System.getProperty("BROWSER").equalsIgnoreCase("firefox")) {
+            dc = DesiredCapabilities.firefox();
+        } else {
+            dc = DesiredCapabilities.chrome();
+        }
+
+        if (System.getProperty("HUB_HOST") != null) {
+            host = System.getProperty("HUB_HOST");
+        }
+
+        String completeUrl = "http://" + host + ":4444/wd/hub";
+        driver = new RemoteWebDriver(new URL(completeUrl), dc);
+
+
+
+       /* System.setProperty("webdriver.chrome.driver", "C:\\Users\\Owner\\Documents\\chromedriver\\chromedriver.exe");
+        driver = new ChromeDriver();*/
         driver.get("https://www.saucedemo.com/");
 
             driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]")).getText();

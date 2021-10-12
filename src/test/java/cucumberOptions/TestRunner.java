@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
 
-@RunWith(Cucumber.class)
+
 @CucumberOptions(
         features = "src/test/java/features",
         glue="stepDefinition",
@@ -18,7 +18,7 @@ import java.io.IOException;
         monochrome = true,
         plugin = {"pretty","html:target/reportHTML"}
 )
-
+@RunWith(Cucumber.class)
 public class TestRunner {
 
 
